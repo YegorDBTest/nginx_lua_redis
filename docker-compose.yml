@@ -9,6 +9,7 @@ services:
       context: ./nginx
     volumes:
       - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf"
+      - "./nginx/get_redis_data.lua:/usr/local/src/get_redis_data.lua"
     depends_on:
       - redis
     ports:
