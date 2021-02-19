@@ -1,4 +1,6 @@
-# Get json data from redis by nginx with lua
+# Redis data manager
+
+> Manage redis data by nginx with lua and json
 
 
 ## Requirements
@@ -11,13 +13,14 @@
 
 
 ## Usage
-Set data
+
+### Set data
 ```shell
-$ docker-compose exec redis redis-cli -n 10 set data "{\"foo\": \"bar\"}"
-OK
+curl -d '{"db": 5, "key": "some_key", "value": {"foo": "bar"}}' -H "Content-Type: application/json" -X POST http://localhost/set_data/
 ```
-Get data
+
+### Get data
 ```shell
-$ curl http://localhost/
-{"data":{"foo": "bar"}}
+$ curl 'http://localhost/get_data/?db=5&key=some_key'
+"{\"foo\":\"bar\"}"
 ```
